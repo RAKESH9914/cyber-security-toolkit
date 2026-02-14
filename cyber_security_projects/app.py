@@ -56,4 +56,27 @@ with tab3:
             st.info("No alerts detected")
     else:
         st.warning("IDS log file not found")
+# ----------- SIMULATE REAL ATTACK BUTTON ------------
+
+import random
+
+def generate_fake_alert():
+    alerts = [
+        "Suspicious login attempt from 192.168.1.10",
+        "Port scanning detected on port 22",
+        "Multiple failed password attempts",
+        "SQL Injection attempt blocked",
+        "Brute force attack detected",
+        "Unauthorized access blocked"
+    ]
+    return random.choice(alerts)
+
+if st.button("Simulate Attack"):
+    alert = generate_fake_alert()
+
+    with open(log_path, "a") as f:
+        f.write(f"[ALERT] {alert}\n")
+
+    st.success("Attack simulated! Refresh page to see alert.")
+
 

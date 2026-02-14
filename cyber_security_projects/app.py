@@ -38,7 +38,9 @@ with tab2:
 
 # ---------------- IDS ----------------
 # ---------------- IDS ----------------
+# ---------------- IDS ----------------
 import os
+import random
 
 with tab3:
     st.header("Network Intrusion Alerts")
@@ -46,6 +48,25 @@ with tab3:
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     log_path = os.path.join(BASE_DIR, "ids_log.txt")
 
+    # -------- SIMULATE ATTACK BUTTON --------
+    if st.button("Simulate Attack"):
+        alerts = [
+            "Suspicious login attempt from 192.168.1.10",
+            "Port scanning detected on port 22",
+            "Multiple failed password attempts",
+            "SQL Injection attempt blocked",
+            "Brute force attack detected",
+            "Unauthorized access blocked"
+        ]
+
+        alert = random.choice(alerts)
+
+        with open(log_path, "a") as f:
+            f.write(f"[ALERT] {alert}\n")
+
+        st.success("Attack simulated! Refresh page to see alert.")
+
+    # -------- SHOW LOGS --------
     if os.path.exists(log_path):
         with open(log_path, "r") as f:
             logs = f.read()
@@ -56,27 +77,3 @@ with tab3:
             st.info("No alerts detected")
     else:
         st.warning("IDS log file not found")
-# ----------- SIMULATE REAL ATTACK BUTTON ------------
-
-import random
-
-def generate_fake_alert():
-    alerts = [
-        "Suspicious login attempt from 192.168.1.10",
-        "Port scanning detected on port 22",
-        "Multiple failed password attempts",
-        "SQL Injection attempt blocked",
-        "Brute force attack detected",
-        "Unauthorized access blocked"
-    ]
-    return random.choice(alerts)
-
-if st.button("Simulate Attack"):
-    alert = generate_fake_alert()
-
-    with open(log_path, "a") as f:
-        f.write(f"[ALERT] {alert}\n")
-
-    st.success("Attack simulated! Refresh page to see alert.")
-
-

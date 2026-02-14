@@ -37,16 +37,23 @@ with tab2:
         st.write(check_password_strength(pwd))
 
 # ---------------- IDS ----------------
+# ---------------- IDS ----------------
+import os
+
 with tab3:
     st.header("Network Intrusion Alerts")
 
-    try:
-        with open("ids_log.txt", "r") as f:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    log_path = os.path.join(BASE_DIR, "ids_log.txt")
+
+    if os.path.exists(log_path):
+        with open(log_path, "r") as f:
             logs = f.read()
 
-        if logs:
+        if logs.strip():
             st.text(logs)
         else:
             st.info("No alerts detected")
-    except:
+    else:
         st.warning("IDS log file not found")
+

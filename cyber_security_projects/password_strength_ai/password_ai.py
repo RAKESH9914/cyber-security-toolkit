@@ -1,11 +1,18 @@
 import pandas as pd
 import random
 import string
+import os
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 
+# ===============================
+# FIXED CSV FILE PATH (IMPORTANT)
+# ===============================
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+csv_path = os.path.join(BASE_DIR, "passwords.csv")
+
 # Load dataset
-data = pd.read_csv("password_strength_ai/passwords.csv")
+data = pd.read_csv(csv_path)
 
 # Train model
 vector = CountVectorizer()

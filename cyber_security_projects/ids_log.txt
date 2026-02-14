@@ -1,0 +1,5 @@
+[ALERT] Suspicious login attempt from IP 192.168.1.10
+[WARNING] Multiple failed password attempts detected
+[ALERT] Port scanning activity detected on port 22
+[CRITICAL] Possible brute force attack blocked
+[INFO] Firewall blocked unauthorized request
